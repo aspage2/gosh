@@ -29,7 +29,8 @@ func mainloop() int {
 		if err != nil {
 			log.Fatal(err)
 		}
-		flds := strings.Fields(input)
+		varsReplaced := GetVars(input, EnvVarSet{})
+		flds := strings.Fields(varsReplaced)
 		if len(flds) == 0 {
 			continue
 		}
@@ -76,8 +77,5 @@ func mainloop() int {
 }
 
 func main() {
-	ms := MapVarSet{"EYE": "this is the test"}
-	fmt.Println(
-		GetVars("echo $EYE $JIMBO + \\$THREE_HUNDRED_3", ms),
-	)
+	os.Exit(mainloop())
 }
