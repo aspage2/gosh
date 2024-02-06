@@ -8,6 +8,8 @@ import (
 	"os/exec"
 	"strconv"
 	"strings"
+
+	"github.com/aspage2/gosh/parse"
 )
 
 func mainloop() int {
@@ -77,5 +79,12 @@ func mainloop() int {
 }
 
 func main() {
-	os.Exit(mainloop())
+
+	program := " Hello, world; how Áre you$VAR_thing?"
+
+	_, tokens := parse.Lex(program)
+
+	for tok := range tokens {
+		fmt.Println(tok)
+	}
 }
